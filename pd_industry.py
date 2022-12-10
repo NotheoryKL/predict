@@ -437,8 +437,7 @@ class Stocker():
         
         if days > 0:
             # Print the predicted price
-            print('Predicted Employee on {} = {:.2f}'.format(
-                future['ds'].iloc[len(future) - 1], future['yhat'].iloc[len(future) - 1]))
+            print('Predicted Employee on 111-12 = {:.2f}'.format(future['yhat'].iloc[len(future) - 1]))
 
             title = 'Predict'
         else:
@@ -460,7 +459,7 @@ class Stocker():
         
         # Plot formatting
         plt.legend(loc = 2, prop={'size': 10}); 
-        plt.xlabel('100      101      102      103      104      105      106      107      108      109      110         '); 
+        plt.xlabel('100     101     102     103     104     105     106     107     108     109     110                       '); 
         plt.ylabel('Employee');
         plt.grid(linewidth=0.6, alpha = 0.6)
         plt.title(title);
@@ -478,7 +477,7 @@ class Stocker():
         # Default start date is one year before end of data
         # Default end date is end date of data
         if start_date is None:
-            start_date = self.max_date - pd.DateOffset(days=120)
+            start_date = self.max_date - pd.DateOffset(days=60)
         if end_date is None:
             end_date = self.max_date
             
@@ -496,7 +495,7 @@ class Stocker():
         model.fit(train)
         
         # Make a future dataframe and predictions
-        future = model.make_future_dataframe(periods = 120, freq='D')
+        future = model.make_future_dataframe(periods = 60, freq='D')
         future = model.predict(future)
         
         # Merge predictions with the known values
@@ -534,12 +533,12 @@ class Stocker():
         if not nshares:
 
             # Date range of predictions
-            print('\nPrediction Range: {} to {}.'.format(start_date,
+            print('\nPrediction Range: 110-1 to 110-12.'.format(start_date,
                 end_date))
 
             # Final prediction vs actual value
-            print('\nPredicted employee on {} = {:.2f}.'.format(max(future['ds']), future['yhat'].iloc[len(future) - 1]))
-            print('Actual employee on    {} = {:.2f}.\n'.format(max(test['ds']), test['y'].iloc[len(test) - 1]))
+            print('\nPredicted employee on 110-11 = {:.2f}.'.format(future['yhat'].iloc[len(future) - 1]))
+            print('Actual employee on    110-11 = {:.2f}.\n'.format(test['y'].iloc[len(test) - 1]))
 
             print('Average Absolute Error on Training Data = {:.2f}.'.format(train_mean_error))
             print('Average Absolute Error on Testing  Data = {:.2f}.\n'.format(test_mean_error))
@@ -574,11 +573,11 @@ class Stocker():
 
             # Plot formatting
             plt.legend(loc = 2, prop={'size': 8}); 
-            plt.xlabel('100      101      102      103      104      105      106      107      108      109     110          '); 
+            plt.xlabel('100      101      102      103      104      105      106      107     108     109     110           '); 
             plt.ylabel('Employee');
             plt.grid(linewidth=0.6, alpha = 0.6)
                        
-            plt.title('{} Model Evaluation from 109-1 to 110-12.'.format(self.symbol));
+            plt.title('{} Model Evaluation from 110-1 to 110-12.'.format(self.symbol));
             
             #set x visible
             ax.set_xticks([])
